@@ -8,7 +8,7 @@ app.get("/", (req, res) => {
 app.get("/test", (req, res) => {
     res.json({
         message: "Updated version deployed successfully ✅",
-        version: "v2 test"
+        version: "v3 test"
       });
 })
 
