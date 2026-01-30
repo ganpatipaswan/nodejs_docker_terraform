@@ -1,0 +1,29 @@
+---
+# Application deployment tasks
+# Amazon Linux 2 – FORCE UPDATE VERSION
+
+- name: Pull latest Node.js Docker image (v2) – force
+  shell: docker pull ganpatipaswan/node-demo:v2
+  when: ansible_distribution == "Amazon"
+
+- name: Stop and remove existing container (hard reset)
+  shell: docker rm -f node-demo || true
+  when: ansible_distribution == "Amazon"
+
+- name: Remove old image (force refresh)
+  shell: docker rmi ganpatipaswan/node-demo:v2 || true
+  when: ansible_distribution == "Amazon"
+
+- name: Pull image again after cleanup
+  shell: docker pull ganpatipaswan/node-demo:v2
+  when: ansible_distribution == "Amazon"
+
+- name: Run Node.js container (fresh)
+  shell: |
+    docker run -d \
+      --name node-demo \
+      -p 3000:3000 \
+      --restart always \
+      ganpatipaswan/node-demo:v2
+  when: ansible_distribution == "Amazon"
+

@@ -1,0 +1,8 @@
+- name: Deploy Node.js App using Docker
+  hosts: app
+  become: yes
+
+  roles:
+    - common
+    - docker
+    - app

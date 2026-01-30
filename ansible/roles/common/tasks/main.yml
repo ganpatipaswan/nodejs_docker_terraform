@@ -1,0 +1,11 @@
+---
+# Common system preparation tasks
+# Amazon Linux 2 – FINAL stable version
+
+- name: Update system packages (Amazon Linux 2)
+  shell: yum update -y
+  when: ansible_distribution == "Amazon"
+
+- name: Install basic utilities (Amazon Linux 2)
+  shell: yum install -y curl wget unzip
+  when: ansible_distribution == "Amazon"
